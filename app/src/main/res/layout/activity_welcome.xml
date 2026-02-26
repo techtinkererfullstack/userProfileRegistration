@@ -5,6 +5,91 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.WelcomeActivity">
+    tools:context=".Activities.WelcomeActivity"
+    android:background="@android:color/white"
+    android:padding="24dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/logoCard"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:cardBackgroundColor="#F3F4F6"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvAppName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" /> </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Android Mobile Application Developer"
+        android:textAlignment="center"
+        android:textColor="#111827"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:lineSpacingMultiplier="0.9"
+        app:layout_constraintBottom_toTopOf="@+id/tvWelcomeDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoCard" />
+
+    <TextView
+        android:id="@+id/tvDevelopedBy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Developed By: \n Md. Shafe Alam "
+        android:textAlignment="center"
+        android:textColor="#6B7280"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetStarted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcomeDesc" />
+
+    <TextView
+        android:id="@+id/tvWelcomeDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Welcome to the official app for the Advanced Mobile Application Development batch."
+        android:textAlignment="center"
+        android:textColor="#6B7280"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGetStarted"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGetStarted"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Get Started"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/black"
+        app:cornerRadius="16dp"
+        android:layout_marginHorizontal="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

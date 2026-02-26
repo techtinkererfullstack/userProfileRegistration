@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.UserProfileRegistration" parent="Base.Theme.UserProfileRegistration" />
+<!--    customization:config-->
+    <style name="RoundedCorners20">
+        <item name="cornerSize">20dp</item>
+    </style>
+
 </resources>
