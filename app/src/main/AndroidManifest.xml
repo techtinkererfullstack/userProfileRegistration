@@ -12,7 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UserProfileRegistration">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.SingleProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.AddProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ProfileListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.WelcomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
