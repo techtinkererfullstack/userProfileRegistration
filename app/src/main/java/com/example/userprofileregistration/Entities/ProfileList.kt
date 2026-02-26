@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "profile_list")
 data class ProfileList(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val profileId: Int = 0,
     val name:String,
-    val details:String,
+    val description:String,
     val followers:String,
     val posts:String
 

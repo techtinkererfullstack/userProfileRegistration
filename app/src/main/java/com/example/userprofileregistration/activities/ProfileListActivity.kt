@@ -1,5 +1,6 @@
 package com.example.userprofileregistration.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +32,15 @@ class ProfileListActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.profileRecyclerViewTrainers.layoutManager = LinearLayoutManager(this)
         viewModel = ViewModelProvider(this)[ProfileListViewModel::class.java]
+
+        binding.fabAddProfile.setOnClickListener {
+            val intent = Intent(this, AddProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.profileRecyclerViewTrainers.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,
+            false)
+
 
         viewModel.profileLiveData.observe(this) { profileList ->
             val adapter = ProfileListAdapter(profileList, onEditClick = {

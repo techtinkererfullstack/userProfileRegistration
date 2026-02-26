@@ -33,7 +33,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="bottom|end"
-                android:background="@drawable/bg_circular_blue"
+                android:background="@drawable/bg_circular_dark"
                 android:padding="8dp"
                 android:src="@android:drawable/ic_menu_camera"
                 app:tint="@color/black" />
@@ -42,13 +42,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
+            android:hint="Name"
             app:boxBackgroundMode="outline"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusTopStart="12dp"
             android:layout_marginBottom="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -57,7 +58,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Bio"
+            android:hint="Details"
             app:boxBackgroundMode="outline"
             android:layout_marginBottom="16dp">
 
@@ -65,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
+                android:id="@+id/detailsET"
                 android:lines="3"
                 android:gravity="top" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -82,7 +84,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Full Name"
+                android:hint="Followers"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
@@ -92,6 +94,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/followersET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
@@ -100,7 +103,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Full Name"
+                android:hint="Post"
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp"
@@ -109,6 +112,7 @@
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/postET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName" />
@@ -163,7 +167,7 @@
             android:layout_marginTop="24dp"
             android:text="Save Profile"
             android:textColor="@color/black"
-            android:backgroundTint="@color/optional1"
+            android:backgroundTint="@color/optional2"
             android:textSize="16sp"
             app:cornerRadius="16dp" />
 

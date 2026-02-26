@@ -35,11 +35,11 @@ class ProfileListAdapter(
     ) {
         val profile = profileList[position]
         holder.binding.profileName.text = profile.name
-        holder.binding.details.text = profile.details
-        holder.binding.followers.text = profile.followers
-        holder.binding.posts.text = profile.posts
+        holder.binding.details.text = profile.description
+        holder.binding.followers.text = "👤 ${ profile.followers }"
+        holder.binding.posts.text = "\uD83D\uDDBC\uFE0F ${ profile.posts }"
         holder.binding.btnMenu.setOnClickListener {
-            showPopupMenu(it, position)
+            showPopupMenu(it, profile)
         }
 
 
@@ -49,18 +49,19 @@ class ProfileListAdapter(
     override fun getItemCount(): Int = profileList.size
 
 
-    private fun showPopupMenu(view: View, position: Int) {
+    private fun showPopupMenu(view: View, profile: ProfileList) {
+
         val popup = PopupMenu(view.context, view)
         popup.menuInflater.inflate(R.menu.card_menu, popup.menu)
 
         popup.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menu_edit -> {
-
+                    onEditClick(profile)
                     true
                 }
                 R.id.menu_delete -> {
-
+                    onDeleteClick(profile)
                     true
                 }
                 else -> false

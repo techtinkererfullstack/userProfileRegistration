@@ -9,11 +9,11 @@ import com.example.userprofileregistration.Dao.ProfileListDao
 import com.example.userprofileregistration.Entities.ProfileDetails
 import com.example.userprofileregistration.Entities.ProfileList
 
-@Database([ProfileList::class, ProfileDetails::class], version = 1)
+@Database([ProfileList::class], version = 1)
 abstract class AppDatabase() : RoomDatabase() {
 
     abstract fun profileListDao(): ProfileListDao
-    abstract fun profileDetailsDao(): ProfileDetailsDao
+//    abstract fun profileDetailsDao(): ProfileDetailsDao
 
     companion object {
         private var instance: AppDatabase? = null

@@ -22,7 +22,7 @@ interface ProfileListDao {
     @Query("SELECT * FROM profile_list")
     fun getAllProfilesList(): List<ProfileList>
 
-    @Query("SELECT * FROM profile_list WHERE id = :id")
+    @Query("SELECT * FROM profile_list WHERE profileId = :id")
     fun getProfileListById(id: Int): ProfileList?
 
 

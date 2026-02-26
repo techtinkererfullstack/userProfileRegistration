@@ -1,61 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:paddingTop="30dp"
     tools:context=".activities.ProfileListActivity">
 
-
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Trainers"
-    android:padding="8dp"
-    android:textStyle="bold"
-    android:textSize="18dp"
-    android:textColor="@color/black"
-    android:layout_marginStart="20dp"
-    />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/profileRecyclerViewTrainers"
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trainers"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profileRecyclerViewTrainers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:padding="8dp"
+            tools:listitem="@layout/profile_card"
+            android:clipToPadding="false"
+            android:layout_marginBottom="10dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/optional1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trainees"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profileRecyclerViewTrainee"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:padding="8dp"
+            tools:listitem="@layout/profile_card"
+            android:clipToPadding="false" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddProfile"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:padding="8dp"
-        tools:listitem="@layout/profile_card"
-        android:clipToPadding="false"
-        android:layout_marginBottom="10dp"
-        />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Add Profile"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="@android:color/black" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/optional1" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Trainees"
-        android:padding="8dp"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginStart="20dp"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/profileRecyclerViewTrainee"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:padding="8dp"
-        tools:listitem="@layout/profile_card"
-        android:clipToPadding="false"/>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
