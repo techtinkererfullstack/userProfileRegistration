@@ -1,4 +1,4 @@
-package com.example.userprofileregistration.Activities
+package com.example.userprofileregistration.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
