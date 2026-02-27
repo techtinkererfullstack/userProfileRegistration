@@ -4,13 +4,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "profile_list")
-data class ProfileList(
+@Entity(tableName = "trainee_profile_list")
+data class TraineeProfileList(
     @PrimaryKey(autoGenerate = true)
     val profileId: Int = 0,
     val name:String,
     val description:String,
     val followers:String,
-    val posts:String
+    val posts:String,
 
 )

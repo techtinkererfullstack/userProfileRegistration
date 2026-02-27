@@ -4,15 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.userprofileregistration.Dao.ProfileDetailsDao
-import com.example.userprofileregistration.Dao.ProfileListDao
-import com.example.userprofileregistration.Entities.ProfileDetails
-import com.example.userprofileregistration.Entities.ProfileList
+import com.example.userprofileregistration.Dao.TraineeProfileListDao
+import com.example.userprofileregistration.Dao.TrainerProfileListDao
+import com.example.userprofileregistration.Entities.TraineeProfileList
+import com.example.userprofileregistration.Entities.TrainerProfileList
 
-@Database([ProfileList::class], version = 1)
-abstract class AppDatabase() : RoomDatabase() {
+@Database([TrainerProfileList::class, TraineeProfileList::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun profileListDao(): ProfileListDao
+    abstract fun trainerProfileListDao(): TrainerProfileListDao
+    abstract fun traineeProfileListDao(): TraineeProfileListDao
 //    abstract fun profileDetailsDao(): ProfileDetailsDao
 
     companion object {

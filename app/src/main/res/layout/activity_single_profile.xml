@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -43,26 +43,26 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:orientation="vertical"
             android:padding="24dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
                 android:text="Aminul Islam Munna"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"
-                app:drawableEndCompat="@drawable/ic_verified_green"
-                android:drawablePadding="8dp" />
+                app:drawableEndCompat="@drawable/ic_verified_green" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Designer | Google Certified"
-                android:textColor="#6B7280"
                 android:layout_marginTop="4dp"
+                android:text="Android Developer | NSDA Approved"
+                android:textColor="#6B7280"
                 android:textSize="14sp" />
 
             <LinearLayout
@@ -74,11 +74,11 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="0dp"
                     android:layout_height="56dp"
-                    android:layout_weight="1"
                     android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
                     android:text="Follow"
-                    app:cornerRadius="16dp"
-                    app:backgroundTint="#2563EB"/>
+                    app:backgroundTint="@color/optional2"
+                    app:cornerRadius="16dp" />
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -86,8 +86,8 @@
                     android:layout_height="56dp"
                     android:layout_weight="1"
                     android:text="Message"
-                    app:strokeColor="#E5E7EB"
-                    app:cornerRadius="16dp"/>
+                    app:cornerRadius="16dp"
+                    app:strokeColor="#E5E7EB" />
             </LinearLayout>
 
             <TextView
@@ -95,41 +95,78 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="About Me"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp"
                 android:text="Focused on creating seamless user experiences through simplicity and usability. Currently leading design for Batch 7 projects."
-                android:textColor="#4B5563"
-                android:lineSpacingExtra="4dp" />
+                android:textColor="#4B5563" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                app:cardBackgroundColor="#F9FAFB"
                 app:cardCornerRadius="20dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="#F9FAFB">
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
-                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="312" android:textStyle="bold" android:textSize="18sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Followers" android:textSize="12sp" android:textColor="#9CA3AF"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="312"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Followers"
+                            android:textColor="#9CA3AF"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
-                    <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#E5E7EB"/>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#E5E7EB" />
 
-                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="48" android:textStyle="bold" android:textSize="18sp"/>
-                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Posts" android:textSize="12sp" android:textColor="#9CA3AF"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="48"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Posts"
+                            android:textColor="#9CA3AF"
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

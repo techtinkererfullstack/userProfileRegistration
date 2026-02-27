@@ -6,30 +6,30 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.userprofileregistration.Entities.ProfileList
+import com.example.userprofileregistration.Entities.TrainerProfileList
 import com.example.userprofileregistration.R
-import com.example.userprofileregistration.ViewModels.ProfileListViewModel
-import com.example.userprofileregistration.databinding.ActivityAddProfileBinding
+import com.example.userprofileregistration.ViewModels.TrainerProfileListViewModel
+import com.example.userprofileregistration.databinding.ActivityAddTrainerProfileBinding
 
-class AddProfileActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAddProfileBinding
-    private lateinit var viewModel: ProfileListViewModel
+class AddTrainerProfileActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAddTrainerProfileBinding
+    private lateinit var viewModel: TrainerProfileListViewModel
     private var profileId: Int = -1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_add_profile)
+        setContentView(R.layout.activity_add_trainer_profile)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        binding = ActivityAddProfileBinding.inflate(layoutInflater)
+        binding = ActivityAddTrainerProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this)[ProfileListViewModel::class.java]
+        viewModel = ViewModelProvider(this)[TrainerProfileListViewModel::class.java]
 
         binding.btnSave.setOnClickListener {
 
@@ -38,7 +38,7 @@ class AddProfileActivity : AppCompatActivity() {
             val followers = binding.followersET.text.toString()
             val posts = binding.postET.text.toString()
 
-            val profile = ProfileList(name = name, description = description, followers = followers, posts = posts)
+            val profile = TrainerProfileList(name = name, description = description, followers = followers, posts = posts)
             viewModel.insertProfileList(profile)
 
             finish()
