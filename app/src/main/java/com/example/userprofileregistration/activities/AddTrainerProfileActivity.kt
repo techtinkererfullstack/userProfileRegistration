@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,7 +14,6 @@ import com.example.userprofileregistration.Entities.TrainerProfileList
 import com.example.userprofileregistration.R
 import com.example.userprofileregistration.ViewModels.TrainerProfileListViewModel
 import com.example.userprofileregistration.databinding.ActivityAddTrainerProfileBinding
-import androidx.activity.result.PickVisualMediaRequest
 
 class AddTrainerProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddTrainerProfileBinding
@@ -21,14 +21,15 @@ class AddTrainerProfileActivity : AppCompatActivity() {
     private var trainerProfileId: Int = -1
     private var selectedImageUri: String = ""
 
-    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null) {
-            val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
-            this.contentResolver.takePersistableUriPermission(uri, flag)
-            selectedImageUri = uri.toString()
-            binding.ivProfileImage.setImageURI(uri)
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            if (uri != null) {
+                val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                this.contentResolver.takePersistableUriPermission(uri, flag)
+                selectedImageUri = uri.toString()
+                binding.ivProfileImage.setImageURI(uri)
+            }
         }
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +37,14 @@ class AddTrainerProfileActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_add_trainer_profile)
+        binding = ActivityAddTrainerProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        binding = ActivityAddTrainerProfileBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
 
         viewModel = ViewModelProvider(this)[TrainerProfileListViewModel::class.java]
 

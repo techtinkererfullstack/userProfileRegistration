@@ -7,4 +7,6 @@
     <color name="white">#FAF8F1</color>
     <color name="black">#1B211A</color>
     <color name="text">#6B7280</color>
+    <color name="dialog_bg">#FDCFFA</color>
+    <color name="dialog_txt">#6B3F69</color>
 </resources>

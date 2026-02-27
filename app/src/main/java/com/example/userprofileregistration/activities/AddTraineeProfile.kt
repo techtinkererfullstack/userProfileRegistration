@@ -21,7 +21,7 @@ import com.example.userprofileregistration.databinding.ActivityAddTrainerProfile
 class AddTraineeProfile : AppCompatActivity() {
     private lateinit var binding: ActivityAddTraineeProfileBinding
     private lateinit var viewModel: TraineeProfileListViewModel
-    private var profileId: Int = -1
+    private var traineeProfileId: Int = -1
     private var selectedImageUri: String = ""
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -34,22 +34,40 @@ class AddTraineeProfile : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        traineeProfileId = intent.getIntExtra("traineeProfileId", -1)
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_add_trainer_profile)
+        binding = ActivityAddTraineeProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        binding = ActivityAddTraineeProfileBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+
+        viewModel = ViewModelProvider(this)[TraineeProfileListViewModel::class.java]
+
 
         binding.traineeImagePicker.setOnClickListener {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        viewModel = ViewModelProvider(this)[TraineeProfileListViewModel::class.java]
+        if (traineeProfileId != -1) {
+            binding.nameET.setText(intent.getStringExtra("name"))
+            binding.detailsET.setText(intent.getStringExtra("description"))
+            binding.followersET.setText(intent.getStringExtra("followers"))
+            binding.postET.setText(intent.getStringExtra("posts"))
+
+            val imageUri = intent.getStringExtra("profileImage")
+            if (!imageUri.isNullOrEmpty()) {
+                selectedImageUri = imageUri
+                binding.ivProfileImage.setImageURI(Uri.parse(imageUri))
+            }
+        }
+
 
         binding.btnSave.setOnClickListener {
 
@@ -57,15 +75,38 @@ class AddTraineeProfile : AppCompatActivity() {
             val description = binding.detailsET.text.toString()
             val followers = binding.followersET.text.toString()
             val posts = binding.postET.text.toString()
+            val profileImage = selectedImageUri
 
-            val profile = TraineeProfileList(
-                name = name,
-                description = description,
-                followers = followers,
-                posts = posts,
-                profileImage = selectedImageUri
-            )
-            viewModel.insertTraineeProfileList(profile)
+
+            if (selectedImageUri.isNotEmpty()) {
+                binding.ivProfileImage.setImageURI(Uri.parse(selectedImageUri))
+            }
+
+
+            // 1. Check if we have a valid profileId (meaning we are in Edit Mode)
+            if (traineeProfileId != -1) {
+                // UPDATE MODE
+                val profile = TraineeProfileList(
+                    profileId = traineeProfileId, // Pass the existing ID!
+                    name = name,
+                    description = description,
+                    followers = followers,
+                    posts = posts,
+                    profileImage = profileImage
+                )
+                viewModel.updateTraineeProfileList(profile)
+            } else {
+                // INSERT MODE (New Card)
+                val profile = TraineeProfileList(
+                    name = name,
+                    description = description,
+                    followers = followers,
+                    posts = posts,
+                    profileImage = profileImage
+                )
+                viewModel.insertTraineeProfileList(profile)
+            }
+
 
             finish()
 
