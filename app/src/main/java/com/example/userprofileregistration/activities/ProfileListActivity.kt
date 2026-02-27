@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.userprofileregistration.Entities.TrainerProfileList
 import com.example.userprofileregistration.R
 import com.example.userprofileregistration.ViewModels.TraineeProfileListViewModel
 import com.example.userprofileregistration.ViewModels.TrainerProfileListViewModel
@@ -19,6 +20,8 @@ class ProfileListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileListBinding
     private lateinit var trainerViewModel: TrainerProfileListViewModel
     private lateinit var traineeViewModel: TraineeProfileListViewModel
+
+
 
 
 
@@ -56,8 +59,18 @@ class ProfileListActivity : AppCompatActivity() {
 
 
         trainerViewModel.profileLiveData.observe(this) { profileList ->
+
+
             val trainerAdapter = TrainerProfileListAdapter(profileList, onEditClick = {
-                trainerViewModel.updateProfileList(it)
+                val intent = Intent(this, AddTrainerProfileActivity::class.java)
+                intent.putExtra("trainerProfileId", it.profileId)
+                intent.putExtra("name", it.name)
+                intent.putExtra("description", it.description)
+                intent.putExtra("followers", it.followers)
+                intent.putExtra("posts", it.posts)
+                intent.putExtra("profileImage", it.profileImage)
+
+                startActivity(intent)
             }, onDeleteClick = {
                 trainerViewModel.deleteProfileList(it)
             })

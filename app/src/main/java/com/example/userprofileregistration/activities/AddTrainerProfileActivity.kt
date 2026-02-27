@@ -18,7 +18,7 @@ import androidx.activity.result.PickVisualMediaRequest
 class AddTrainerProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddTrainerProfileBinding
     private lateinit var viewModel: TrainerProfileListViewModel
-    private var profileId: Int = -1
+    private var trainerProfileId: Int = -1
     private var selectedImageUri: String = ""
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -32,6 +32,8 @@ class AddTrainerProfileActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        trainerProfileId = intent.getIntExtra("trainerProfileId", -1)
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_trainer_profile)
@@ -48,6 +50,22 @@ class AddTrainerProfileActivity : AppCompatActivity() {
         binding.trainerImagePicker.setOnClickListener {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
+
+        if (trainerProfileId != -1) {
+            binding.nameET.setText(intent.getStringExtra("name"))
+            binding.detailsET.setText(intent.getStringExtra("description"))
+            binding.followersET.setText(intent.getStringExtra("followers"))
+            binding.postET.setText(intent.getStringExtra("posts"))
+
+            val imageUri = intent.getStringExtra("profileImage")
+            if (!imageUri.isNullOrEmpty()) {
+                selectedImageUri = imageUri
+                binding.ivProfileImage.setImageURI(Uri.parse(imageUri))
+            }
+        }
+
+
+
         binding.btnSave.setOnClickListener {
 
             val name = binding.nameET.text.toString()
@@ -56,14 +74,37 @@ class AddTrainerProfileActivity : AppCompatActivity() {
             val posts = binding.postET.text.toString()
             val profileImage = selectedImageUri
 
+
             if (selectedImageUri.isNotEmpty()) {
                 binding.ivProfileImage.setImageURI(Uri.parse(selectedImageUri))
             }
 
 
+            // 1. Check if we have a valid profileId (meaning we are in Edit Mode)
+            if (trainerProfileId != -1) {
+                // UPDATE MODE
+                val profile = TrainerProfileList(
+                    profileId = trainerProfileId, // Pass the existing ID!
+                    name = name,
+                    description = description,
+                    followers = followers,
+                    posts = posts,
+                    profileImage = profileImage
+                )
+                viewModel.updateProfileList(profile)
+            } else {
+                // INSERT MODE (New Card)
+                val profile = TrainerProfileList(
+                    name = name,
+                    description = description,
+                    followers = followers,
+                    posts = posts,
+                    profileImage = profileImage
+                )
+                viewModel.insertProfileList(profile)
+            }
 
-            val profile = TrainerProfileList(name = name, description = description, followers = followers, posts = posts, profileImage = profileImage)
-            viewModel.insertProfileList(profile)
+
 
             finish()
 
