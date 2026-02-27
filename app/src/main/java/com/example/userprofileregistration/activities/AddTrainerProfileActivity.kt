@@ -1,7 +1,10 @@
 package com.example.userprofileregistration.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -10,11 +13,22 @@ import com.example.userprofileregistration.Entities.TrainerProfileList
 import com.example.userprofileregistration.R
 import com.example.userprofileregistration.ViewModels.TrainerProfileListViewModel
 import com.example.userprofileregistration.databinding.ActivityAddTrainerProfileBinding
+import androidx.activity.result.PickVisualMediaRequest
 
 class AddTrainerProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddTrainerProfileBinding
     private lateinit var viewModel: TrainerProfileListViewModel
     private var profileId: Int = -1
+    private var selectedImageUri: String = ""
+
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null) {
+            val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            this.contentResolver.takePersistableUriPermission(uri, flag)
+            selectedImageUri = uri.toString()
+            binding.ivProfileImage.setImageURI(uri)
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,23 +45,29 @@ class AddTrainerProfileActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[TrainerProfileListViewModel::class.java]
 
+        binding.trainerImagePicker.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
         binding.btnSave.setOnClickListener {
 
             val name = binding.nameET.text.toString()
             val description = binding.detailsET.text.toString()
             val followers = binding.followersET.text.toString()
             val posts = binding.postET.text.toString()
+            val profileImage = selectedImageUri
 
-            val profile = TrainerProfileList(name = name, description = description, followers = followers, posts = posts)
+            if (selectedImageUri.isNotEmpty()) {
+                binding.ivProfileImage.setImageURI(Uri.parse(selectedImageUri))
+            }
+
+
+
+            val profile = TrainerProfileList(name = name, description = description, followers = followers, posts = posts, profileImage = profileImage)
             viewModel.insertProfileList(profile)
 
             finish()
 
         }
-
-
-
-
 
     }
 }

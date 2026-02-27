@@ -1,11 +1,13 @@
 package com.example.userprofileregistration.adapters
 
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.userprofileregistration.Entities.TrainerProfileList
 import com.example.userprofileregistration.R
 import com.example.userprofileregistration.activities.SingleProfileActivity
@@ -40,6 +42,19 @@ class TrainerProfileListAdapter(
         holder.binding.details.text = trainerProfile.description
         holder.binding.followers.text = "👤 ${ trainerProfile.followers }"
         holder.binding.posts.text = "\uD83D\uDDBC\uFE0F ${ trainerProfile.posts }"
+        holder.binding.cardImage.setImageURI(Uri.parse(trainerProfile.profileImage))
+
+        if (trainerProfile.profileImage.isNotEmpty()) {
+            // Coil handles the background loading and permission resolution for you!
+            holder.binding.cardImage.load(trainerProfile.profileImage) {
+                crossfade(true)
+//                placeholder(R.drawable.ic_launcher_foreground) // Optional: Show while loading
+//                error(R.drawable.ic_launcher_foreground) // Optional: Show if it fails
+            }}
+//        } else {
+//            // Handle the case where there is no image
+//            holder.binding.cardImage.setImageResource(R.drawable.ic_launcher_foreground)
+//        }
         holder.binding.btnMenu.setOnClickListener {
             showPopupMenu(it, trainerProfile)
         }
@@ -48,6 +63,11 @@ class TrainerProfileListAdapter(
             val context = holder.binding.root.context
             val intent = Intent(context, SingleProfileActivity::class.java)
             intent.putExtra("trainerProfileId", trainerProfile.profileId)
+            intent.putExtra("trainerName", trainerProfile.name)
+            intent.putExtra("trainerDescription", trainerProfile.description)
+            intent.putExtra("trainerFollowers", trainerProfile.followers)
+            intent.putExtra("trainerPosts", trainerProfile.posts)
+            intent.putExtra("trainerImg", trainerProfile.profileImage)
             context.startActivity(intent)
 
         }

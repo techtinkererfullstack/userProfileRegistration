@@ -12,6 +12,8 @@ import com.example.userprofileregistration.databinding.ActivityWelcomeBinding
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,11 +26,15 @@ class WelcomeActivity : AppCompatActivity() {
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         binding.btnGetStarted.setOnClickListener {
             val intent = Intent(this, ProfileListActivity::class.java)
             startActivity(intent)
+
             finish()
         }
+
+
 
 
 

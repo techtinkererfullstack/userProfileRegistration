@@ -67,5 +67,7 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
 
+    implementation("io.coil-kt:coil:2.6.0")
+
 
 }

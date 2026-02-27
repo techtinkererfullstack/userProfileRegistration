@@ -19,6 +19,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
+                android:id="@+id/profileImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -48,6 +49,7 @@
             android:padding="24dp">
 
             <TextView
+                android:id="@+id/nameTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="8dp"
@@ -58,6 +60,7 @@
                 app:drawableEndCompat="@drawable/ic_verified_green" />
 
             <TextView
+                android:id="@+id/professionTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -99,6 +102,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/aboutMeTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -128,6 +132,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/followersTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="312"
@@ -155,6 +160,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/postsTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="48"

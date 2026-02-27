@@ -42,7 +42,7 @@ class ProfileListActivity : AppCompatActivity() {
         trainerViewModel = ViewModelProvider(this)[TrainerProfileListViewModel::class.java]
         traineeViewModel = ViewModelProvider(this)[TraineeProfileListViewModel::class.java]
 
-        binding.fabTrainersAddProfile.setOnClickListener {
+        binding.fabAddTrainerProfile.setOnClickListener {
             val intent = Intent(this, AddTrainerProfileActivity::class.java)
             startActivity(intent)
         }
