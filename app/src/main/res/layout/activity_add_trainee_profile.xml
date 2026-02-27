@@ -30,6 +30,7 @@
                 app:shapeAppearanceOverlay="@style/CircleImage" />
 
             <ImageView
+                android:id="@+id/traineeImagePicker"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="bottom|end"

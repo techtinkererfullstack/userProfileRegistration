@@ -12,5 +12,6 @@ data class TraineeProfileList(
     val description:String,
     val followers:String,
     val posts:String,
+    val profileImage:String,
 
 )

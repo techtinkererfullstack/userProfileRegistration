@@ -68,6 +68,7 @@ class TrainerProfileListAdapter(
             intent.putExtra("trainerFollowers", trainerProfile.followers)
             intent.putExtra("trainerPosts", trainerProfile.posts)
             intent.putExtra("trainerImg", trainerProfile.profileImage)
+            intent.putExtra("profileType", "TRAINER")
             context.startActivity(intent)
 
         }

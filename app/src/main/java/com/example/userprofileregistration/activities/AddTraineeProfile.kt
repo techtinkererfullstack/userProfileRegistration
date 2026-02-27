@@ -1,7 +1,11 @@
 package com.example.userprofileregistration.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,7 +22,16 @@ class AddTraineeProfile : AppCompatActivity() {
     private lateinit var binding: ActivityAddTraineeProfileBinding
     private lateinit var viewModel: TraineeProfileListViewModel
     private var profileId: Int = -1
+    private var selectedImageUri: String = ""
 
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null) {
+            val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            this.contentResolver.takePersistableUriPermission(uri, flag)
+            selectedImageUri = uri.toString()
+            binding.ivProfileImage.setImageURI(uri)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +44,10 @@ class AddTraineeProfile : AppCompatActivity() {
         }
         binding = ActivityAddTraineeProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.traineeImagePicker.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
 
         viewModel = ViewModelProvider(this)[TraineeProfileListViewModel::class.java]
 
@@ -45,7 +62,8 @@ class AddTraineeProfile : AppCompatActivity() {
                 name = name,
                 description = description,
                 followers = followers,
-                posts = posts
+                posts = posts,
+                profileImage = selectedImageUri
             )
             viewModel.insertTraineeProfileList(profile)
 
